@@ -9,9 +9,9 @@ class GameProvider extends ChangeNotifier {
   Random random = Random();
 
   void placeChip(int index) {
-    if (board[index] == Colors.white && winner == null) {
-      board[index] = isPlayerOneTurn ? Colors.blue : Colors.red;
-      isPlayerOneTurn = !isPlayerOneTurn;
+    if (board[index] == Colors.white && winner == null && isPlayerOneTurn) {
+      board[index] = Colors.blue;
+      isPlayerOneTurn = false;
       checkWin();
       notifyListeners();
       if (winner == null) {
@@ -30,8 +30,8 @@ class GameProvider extends ChangeNotifier {
     if (availableMoves.isNotEmpty) {
       int botIndex = availableMoves[random.nextInt(availableMoves.length)];
       board[botIndex] = Colors.red;
-      isPlayerOneTurn = true;
       checkWin();
+      isPlayerOneTurn = true;
       notifyListeners();
     }
   }

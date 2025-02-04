@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
               itemCount: 25,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () => gameProvider.placeChip(index),
+                  onTap: gameProvider.isPlayerOneTurn ? () => gameProvider.placeChip(index) : null,
                   child: Container(
                     margin: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
